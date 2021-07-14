@@ -3,7 +3,7 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const fs = require("fs");
-const genhtml = require('./dist/genhtml')
+const genhtml = require('./lib/genhtml')
 
 
 let teamMem = [];
@@ -44,6 +44,7 @@ const questManager= () => {
 
 
 const questAddRole = () => {
+  console.log (teamMem)
     inquirer
     .prompt([
         {
@@ -60,7 +61,7 @@ const questAddRole = () => {
         else if (data.choice === 'Intern'){
             questIntern();
         }
-        else{"S"}
+        else{createFile()}
     })
 }
 
@@ -131,6 +132,14 @@ const questIntern =() => {
         
     });
     
+}
+
+const createFile = () => {
+  fs.writeFile('./dist/index.html',"teamhtml",function(err){
+  if (err){
+    console.log('error')
+  }
+});
 }
 
 
